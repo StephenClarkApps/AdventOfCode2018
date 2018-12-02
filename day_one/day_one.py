@@ -20,8 +20,8 @@ def append_to_cache(value):
     frequency_cache.append(value)
 
 def doBinaryMath(operand_one, oper_ator, operand_two):
-    somit = int(operand_one) * first_operator_was_positive_or_negative
-    operand_one,operand_two = somit, int(operand_two)
+    op_one_with_sign = int(operand_one) * first_operator_was_positive_or_negative
+    operand_one,operand_two = op_one_with_sign, int(operand_two)
     return get_operator(oper_ator)(operand_one, operand_two)
 
 while end == False:
