@@ -26,7 +26,7 @@ def doBinaryMath(operand_one, oper_ator, operand_two):
 
 while end == False:
     # open our input file in read mode
-    input_file = open("input", "r")
+    input_file = open("input.txt", "r")
 
     first_operator_was_positive_or_negative = 1
     for line_from_input_file in input_file:
