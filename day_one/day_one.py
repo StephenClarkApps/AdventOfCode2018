@@ -1,9 +1,6 @@
 # Advent of Code - Day One
 #
 # Haven't really optimized the efficiency of this approach, so, yeah :/
-
-from array import array
-
 import operator
 import re
 import sys
