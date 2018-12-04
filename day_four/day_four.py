@@ -2,10 +2,19 @@
 # Advent of Code 2018
 
 import re
+from dateutil.parser import parse
+
+# maybe a data structure with the line, the day, month, year, the time,
+# if its a Fall/Wake or on-shift message
 
 for line in open('input.txt'):
     words = line.split()
-    print (words[0][1:])
+    date = words[0][1:]
+    parsed_date = parse(date)
+    year = parsed_date.year
+    month = parsed_date.month
+    day = parsed_date.day
+    
     print (words[1][:-1])
     print (words[2]) # could be falls, wakes, Guard
 
