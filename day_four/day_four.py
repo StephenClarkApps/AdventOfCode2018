@@ -3,10 +3,13 @@
 
 import re
 from dateutil.parser import parse
+import numpy as np
 
+records = []
 
 class Record:
-    def __init__(self, year, month, day, hour, mins, shift_start, guard_id, falls_asleep, wakes):
+    def __init__(self, date, year, month, day, hour, mins, shift_start, guard_id, falls_asleep, wakes):
+        self.date = date
         self.year = year
         self.month = month
         self.day = day
@@ -17,7 +20,7 @@ class Record:
         self.falls_asleep = falls_asleep
         self.wakes = wakes
 
-
+"""Function to parse a line from the input file and return a Record"""
 def ParseLine(line):
         words = line.split()
         date = words[0][1:] + " " + words[1][:-1]
@@ -41,23 +44,15 @@ def ParseLine(line):
             wakes = True
         elif (words[2] == "falls"):
             falls_asleep = True
-        return Record(year, month, day, hour, mins, shift_start, guard_id, falls_asleep, wakes)
+        return Record(date, year, month, day, hour, mins, shift_start, guard_id, falls_asleep, wakes)
 
-# maybe a data structure with the line, the day, month, year, the time,
-# if its a Fall/Wake or on-shift message
-
+# Read in data from the input file and append records to an array of records
 for line in open('input.txt'):
     record = (ParseLine(line))
-    print record.year
+    records.append(record)
+    # instead of just
 
-# need to read in the file
-# parse it and then process
+records = sorted(records, key=lambda record: record.date)   # sort by date
 
-# Since the entries are not in order we need to *sort* them 1st
-# We might start by organising them by date, then by time
-
-# Want to work out which guard is asleep the most and on which times
-# if we have a hash table indexed by guard id inside of which is a
-# hash table of a given date indexes against an array or set of minutes during
-# the midnight hour when they were asleep
-# [ guard_id, [ date, [int] ] ]
+for record in records:
+    print (record.date)
