@@ -4,19 +4,47 @@
 import re
 from dateutil.parser import parse
 
+
+class Record:
+    def __init__(self, year, month, day, hour, mins, shift_start, guard_id, falls_asleep, wakes):
+        self.year = year
+        self.month = month
+        self.day = day
+        self.hour = hour
+        self.mins = mins
+        self.shift_start = shift_start
+        self.guard_id = guard_id
+        self.falls_asleep = falls_asleep
+        self.wakes = wakes
+
 # maybe a data structure with the line, the day, month, year, the time,
 # if its a Fall/Wake or on-shift message
 
 for line in open('input.txt'):
     words = line.split()
-    date = words[0][1:]
+    
+    date = words[0][1:] + " " + words[1][:-1]
     parsed_date = parse(date)
     year = parsed_date.year
     month = parsed_date.month
     day = parsed_date.day
-    
-    print (words[1][:-1])
-    print (words[2]) # could be falls, wakes, Guard
+    hour = parsed_date.hour
+    mins = parsed_date.minute
+
+    #print (year, month, day, hour, mins)
+    shift_start = False
+    guard_id = ""
+    falls_asleep = False
+    wakes = False
+
+    if (words[2] == "Guard"):
+        shift_start = True
+        guard_id = words[3]
+        print (guard_id)
+    elif (words[2] == "wakes"):
+        wakes = True
+    elif (words[2] == "falls"):
+        falls_asleep = True
 
 # need to read in the file
 # parse it and then process
