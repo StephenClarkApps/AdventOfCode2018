@@ -2,6 +2,7 @@ import re
 from collections import defaultdict
 
 grid = defaultdict(int)
+memoized_predictions = {}
 
 class Predition:
     def __init__(self, id, left, top, height, width):
@@ -14,6 +15,9 @@ class Predition:
 #line = ("#1 @ 912,277: 27x20")
 
 def GetPrediction(some_string):
+    if some_string in memoized_predictions:
+        return memoized_predictions[some_string]
+
     extracted = re.findall(r"\w+",some_string)
     id = int(extracted[0])
     left = int(extracted[1])
@@ -21,6 +25,8 @@ def GetPrediction(some_string):
     height_and_width = re.split(r'(\d+)', extracted[3])
     height = int(height_and_width[1])
     width = int(height_and_width[3])
+
+    memoized_predictions[some_string] = Predition(id, left, top, height, width)
     return Predition(id, left, top, height, width)
 
 
