@@ -50,9 +50,22 @@ def ParseLine(line):
 for line in open('input.txt'):
     record = (ParseLine(line))
     records.append(record)
-    # instead of just
 
+# sort the records by date
 records = sorted(records, key=lambda record: record.date)   # sort by date
 
+#some how work out the guard with the most mins time used
+current_guard_id = 0
+last_fall_asleep_minute = 0
+last_wake_up_minute = 0
 for record in records:
-    print (record.date)
+    current_guard_id = record.guard_id
+    if record.shift_start == True:
+        print (current_guard_id + " Has started a shift. At: " + str(record.date))
+    if record.falls_asleep:
+        print ("He/she has fallen asleep @"  + str(record.date))
+        last_fall_asleep_minute = int(record.mins)
+    if record.wakes:
+        print ("He/she has woken again @"  + str(record.date))
+        last_wake_up_minute = int(record.mins)
+        print("They've been asleep for: " + str(last_wake_up_minute - last_fall_asleep_minute) + "mins")
