@@ -38,3 +38,13 @@ for (r,c),value in grid.items():
         overlap_total += 1
 
 print (overlap_total)
+
+for row in input:
+    pred = GetPrediction(row)
+    is_it = True
+    for dx in range(pred.width):
+        for dy in range(pred.height):
+            if grid[(pred.left + dy, pred.top + dx)] > 1:
+                is_it = False
+    if is_it:
+        print (pred.id)
