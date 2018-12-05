@@ -12,7 +12,7 @@ def opposites(x, y):
 #look at character before target character and after it
 before = []
 after = ['Q']
-def OnePass():
+def OnePass(input):
     counter = 0
     for x in input:
         if counter !=0:
@@ -24,10 +24,15 @@ def OnePass():
         counter += 1
 
     #Check that two Chracters are the same, but have different cases
-while before != after:
-    before = input.copy()
-    OnePass()
-    after = input.copy()
+def Checks(input):
+    before = []
+    after = ['Q']
+    while before != after:
+        before = input.copy()
+        OnePass(input)
+        after = input.copy()
+
+Checks(input)
 
 regex = re.compile('[^a-zA-Z]')
 this = ''.join(input)
