@@ -97,7 +97,8 @@ for key, value in guard_ids_by_mins_asleep.items():
         linked_guard = key
 print("Linked Guard: ")
 print (linked_guard)
-print ("AT")
-print (previous_max_mins)
+# print ("AT")
+# print (previous_max_mins)
+print("most slept at minute: ")
 print(max(track_mins,key=track_mins.count))
 #print (track_mins)
