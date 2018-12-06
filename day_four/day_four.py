@@ -69,13 +69,9 @@ for record in records:
     #current_guard_id = record.guard_id
     if record.shift_start == True:
         current_guard_id = record.guard_id
-        #print (str(current_guard_id) + " Has started a shift. At: " + str(record.date))
-        #print (current_guard_id)
     if record.falls_asleep:
-        #print ("He/she has fallen asleep @"  + str(record.date))
         last_fall_asleep_minute = int(record.mins)
     if record.wakes:
-        #print ("He/she has woken again @"  + str(record.date))
         last_wake_up_minute = int(record.mins)
         key = current_guard_id
         for thw in range(last_fall_asleep_minute, last_wake_up_minute, 1):
@@ -84,27 +80,18 @@ for record in records:
             else:
                 track_mins[current_guard_id] = [thw]
 
-
         guard_ids_by_mins_asleep[key] = guard_ids_by_mins_asleep.get(key , 0)  + (last_wake_up_minute - last_fall_asleep_minute)
-        #print("They've been asleep for: " + str(last_wake_up_minute - last_fall_asleep_minute) + "mins")
 
 previous_max_mins = 0
 linked_guard = 0
 for key, value in guard_ids_by_mins_asleep.items():
-    # print ("Guard: ")
-    # print(key)
-    # print ("Mins: ")
-    # print(value)
     if value > previous_max_mins:
         previous_max_mins = value
         linked_guard = key
+
 print("Linked Guard: ")
 print (linked_guard)
-# print ("AT")
-# print (previous_max_mins)
-# print("most slept at minute: ")
-# print(max(track_mins,key=track_mins.count))
-#print (track_mins)
+print ("")
 
 from itertools import groupby as g
 def most_common_oneliner(L):
