@@ -26,8 +26,8 @@ class Record:
         self.falls_asleep = falls_asleep
         self.wakes = wakes
 
-"""Function to parse a line from the input file and return a Record"""
 def ParseLine(line):
+    """Function to parse a line from the input file and return a Record"""
         words = line.split()
         date = words[0][1:] + " " + words[1][:-1]
         parsed_date = parse(date)
