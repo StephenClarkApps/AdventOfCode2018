@@ -5,7 +5,7 @@ import re
 from dateutil.parser import parse
 import numpy as np
 
-track_mins = []
+track_mins = {}
 records = []
 guard_ids_by_mins_asleep = {}
 
@@ -78,9 +78,12 @@ for record in records:
         #print ("He/she has woken again @"  + str(record.date))
         last_wake_up_minute = int(record.mins)
         key = current_guard_id
-        if current_guard_id == 499: # hard coded the guard id from the previous answer :/
-            for thw in range(last_fall_asleep_minute, last_wake_up_minute, 1):
-                track_mins.append(thw)
+        for thw in range(last_fall_asleep_minute, last_wake_up_minute, 1):
+            if current_guard_id in track_mins:
+                track_mins[current_guard_id].append(thw)
+            else:
+                track_mins[current_guard_id] = [thw]
+
 
         guard_ids_by_mins_asleep[key] = guard_ids_by_mins_asleep.get(key , 0)  + (last_wake_up_minute - last_fall_asleep_minute)
         #print("They've been asleep for: " + str(last_wake_up_minute - last_fall_asleep_minute) + "mins")
@@ -99,12 +102,27 @@ print("Linked Guard: ")
 print (linked_guard)
 # print ("AT")
 # print (previous_max_mins)
-print("most slept at minute: ")
-print(max(track_mins,key=track_mins.count))
+# print("most slept at minute: ")
+# print(max(track_mins,key=track_mins.count))
 #print (track_mins)
+
+from itertools import groupby as g
+def most_common_oneliner(L):
+    return max(g(sorted(L)), key=lambda(x, v):(len(list(v)),-L.index(x)))[0]
 
 # PART II - "Of all guards, which guard is most frequently asleep on the same minute?"
 # To know this we need to know frequency of sleeping, by minute, by guard
 # but we already know that the minutes will be in the range 1..59 which are within that one hour window
-# so we just need to record the frequency, get the max using a method like max for each guard, and find the 
+# so we just need to record the frequency, get the max using a method like max for each guard, and find the
 # highest frquency and the associated guard.
+for element in track_mins.items():
+    # print (element)
+    x, y = element
+    print ("Guard: " + str(x))
+    print ("Most common minute: " + str(most_common_oneliner(y)))
+    count = 0
+    for x in y:
+        if x == (most_common_oneliner(y)):
+            count += 1
+    print ("The number of times the guard was asleep at this min is: " + str(count))
+    print ("")
