@@ -2,8 +2,8 @@ import re
 raw_input = open('input.txt').read()
 raw_input_list = list(raw_input)
 
-"""Check that two Chracters are the same, but have different cases"""
 def opposites(x, y):
+    """Check that two Chracters are the same, but have different cases"""
     if x.isupper() & y.isupper() | x.islower() & y.islower():
         return False
     else:
@@ -14,8 +14,9 @@ def opposites(x, y):
 before = []
 after = ['Q']
 
-"""pass in the input as a list and return a filtered list"""
 def OnePass(list):
+    """pass in the input as a list and return a filtered list after removing
+    a single pass worth of the same-letter-opposite-case instances """
     the_list = list
     counter = 0
     for x in the_list:
