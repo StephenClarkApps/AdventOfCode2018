@@ -102,3 +102,9 @@ print (linked_guard)
 print("most slept at minute: ")
 print(max(track_mins,key=track_mins.count))
 #print (track_mins)
+
+# PART II - "Of all guards, which guard is most frequently asleep on the same minute?"
+# To know this we need to know frequency of sleeping, by minute, by guard
+# but we already know that the minutes will be in the range 1..59 which are within that one hour window
+# so we just need to record the frequency, get the max using a method like max for each guard, and find the 
+# highest frquency and the associated guard.
