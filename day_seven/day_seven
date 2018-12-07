@@ -27,8 +27,21 @@ sorted_letters = sorted(list(as_a_set))
 
 # for letter in sorted_letters:
 #     print (letter)
+output = []
 
 from string import ascii_uppercase
+
+# before_output = output
 for ch in ascii_uppercase:
-    if ch in sorted_letters:
-        print (ch)
+    if (ch in sorted_letters) & (ch not in output):
+        #output.append(ch)
+        # go through the output array (if its populated)
+        # for letter in position 0 find if ch should be before it
+        # if it should be put ch in position 0 else continue
+        if not output:
+            print ("nothing in output yet")
+            output.append(ch)
+        else:
+            for x in output:
+                print (x)
+        #insert (position, ch)
