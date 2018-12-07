@@ -50,13 +50,19 @@ for coordinate in coordinates:
 corner_top_left = (min_x, min_y)
 corner_btm_right = (max_x, max_y)
 
-w, h = max_x, max_y;
-Matrix = [[0 for x in range(w)] for y in range(h)]
+# w, h = max_x, max_y;
+# Matrix = [[0 for x in range(w)] for y in range(h)]
+#
+# matrices = {}
+# Matrix = {}
 
-matrices = {}
-
+# Matrix[1,2] = 15 # this could ne the coorinates x and y and the distance as an instance
+# print Matrix[1,2]
+Meta_Matrix = {}
+# Meta_Matrix[1] = Matrix
+counter = 0
 for coordinate in coordinates:
     # create an instance of the matrix for each core coordinate
     # go through all the point in the matrix checking the distance from
     # the core coordinate and storing the value in the 2d array index in
-    # a dictionary for that coordinate 
+    # a dictionary for that coordinate

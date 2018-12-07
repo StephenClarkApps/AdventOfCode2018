@@ -1,0 +1,34 @@
+
+import re
+rules = []
+avaliable_next_steps = []
+all_letters = []
+
+class Rule:
+    def __init__(self, must_be_done, before):
+        self.must_be_done = must_be_done
+        self.before = before
+
+input = open('input.txt').readlines()
+
+for line in input:
+    #parse the line and extract a rules
+    words = re.findall(r"\w+", line)
+    must_be_done = words[1]
+    before = words[7]
+    all_letters.append(must_be_done)
+    all_letters.append(before)
+
+    the_rule = Rule(must_be_done, before)
+    rules.append(the_rule)
+
+as_a_set = set(all_letters)
+sorted_letters = sorted(list(as_a_set))
+
+# for letter in sorted_letters:
+#     print (letter)
+
+from string import ascii_uppercase
+for ch in ascii_uppercase:
+    if ch in sorted_letters:
+        print (ch)
