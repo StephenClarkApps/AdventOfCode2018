@@ -64,9 +64,11 @@ for key, value in coord_by_identifier.items():
             Matrix[(x,y)] = distance
     Meta_Matrix[key] = Matrix
 
+outcome_matrix = {}
+
 for key, value in Meta_Matrix.items():
     print (key, value)
-    
+
 # counter = 0
 # for coordinate in coordinates:
     # create an instance of the matrix for each core coordinate
