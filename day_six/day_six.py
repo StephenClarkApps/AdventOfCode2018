@@ -25,10 +25,9 @@ min_x = 0
 min_y = 0
 
 for coordinate in coordinates:
-    # print (counter)
     x = int(coordinate[0])
     y = int(coordinate[3])
-    # print (x, y)
+
     if counter == 0:
         max_x = x
         max_y = y
@@ -47,21 +46,29 @@ for coordinate in coordinates:
     coord_by_identifier[counter] = (x, y)
     counter += 1
 
-corner_top_left = (min_x, min_y)
-corner_btm_right = (max_x, max_y)
+# corner_top_left = (min_x, min_y)
+# corner_btm_right = (max_x, max_y)
 
-# w, h = max_x, max_y;
-# Matrix = [[0 for x in range(w)] for y in range(h)]
-#
-# matrices = {}
-# Matrix = {}
-
-# Matrix[1,2] = 15 # this could ne the coorinates x and y and the distance as an instance
-# print Matrix[1,2]
+Matrix = {}
 Meta_Matrix = {}
-# Meta_Matrix[1] = Matrix
-counter = 0
-for coordinate in coordinates:
+
+for key, value in coord_by_identifier.items():
+    Matrix = {}
+    #print (key, value)
+    for x in range(min_x, max_x):
+        for y in range(min_y, max_y):
+            target_x = value[0]
+            target_y = value[1]
+            distance = abs(x - target_x) + abs(y - target_y)
+            #print (distance)
+            Matrix[(x,y)] = distance
+    Meta_Matrix[key] = Matrix
+
+for key, value in Meta_Matrix.items():
+    print (key, value)
+    
+# counter = 0
+# for coordinate in coordinates:
     # create an instance of the matrix for each core coordinate
     # go through all the point in the matrix checking the distance from
     # the core coordinate and storing the value in the 2d array index in
