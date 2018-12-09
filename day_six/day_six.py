@@ -66,8 +66,49 @@ for key, value in coord_by_identifier.items():
 
 outcome_matrix = {}
 
-for key, value in Meta_Matrix.items():
-    print (key, value)
+# A given point in our outcome matrix could be closest to a particlar root
+# cooridinate from the input list, or it may be not closer to any one point
+
+for root_point_index, dists_for_coords in Meta_Matrix.items():
+    # print ("Root Point Reference: ", root_point_index)
+    # print (dists_for_coords)
+    for coordinate, dist_val in dists_for_coords.items():
+        # print ("")
+        # print (coordinate, dist_val)
+        # print ("")
+
+        if coordinate in outcome_matrix.keys():
+            if dist_val > outcome_matrix[coordinate][1]:
+                outcome_matrix[coordinate] = (root_point_index, dist_val)
+            elif dist_val == outcome_matrix[coordinate][1]:
+                outcome_matrix[coordinate] = (-1, -1)
+
+        else:
+            outcome_matrix[coordinate] = (root_point_index, dist_val)
+
+        #if 'key1' in dict.keys():
+        # if (key, value) in outcome_matrix.keys():
+        #     # print (outcome_matrix[(key, value)])
+        # else:
+        #     print (k)
+        #     print (v)
+        #     # outcome_matrix[(k, v)] = value
+
+# print (outcome_matrix)
+this = {}
+for element in outcome_matrix:
+    print (element)
+    print (outcome_matrix[element][0])
+    if outcome_matrix[element][0] in this.keys():
+        this[outcome_matrix[element][0]] += 1
+    else:
+        this[outcome_matrix[element][0]] = 1
+    # print ("")
+
+print (this)
+# for p,q in outcome_matrix:
+#     print (p, q)
+
 
 # counter = 0
 # for coordinate in coordinates:
